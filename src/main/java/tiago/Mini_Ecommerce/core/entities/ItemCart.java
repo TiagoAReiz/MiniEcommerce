@@ -18,6 +18,6 @@ public class ItemCart {
     private Product product;
     @ManyToOne
     @JoinColumn(name = "cart_id", referencedColumnName = "id", nullable = false)
-    private Cart user;
+    private Cart cart;
     private int quantity;
 }

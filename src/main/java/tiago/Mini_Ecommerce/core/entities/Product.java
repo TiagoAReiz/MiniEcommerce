@@ -23,7 +23,7 @@ public class Product {
     private String category;
     @ManyToOne
     @JoinColumn(name = "seller_id", referencedColumnName = "id", nullable = false)
-    private Seller seller;
+    private UserEntity seller;
     @CreationTimestamp
     private Date createdAt;
     private Date updatedAt;

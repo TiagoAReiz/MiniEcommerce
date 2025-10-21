@@ -11,6 +11,8 @@ public class UserMap {
         user.setName(userDto.name());
         user.setEmail(userDto.email());
         user.setPassword(userDto.password());
+        user.setCpf(userDto.cpf());
+        user.setRole(userDto.role());
         return user;
     }
 }

@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface UserUseCases {
     ResponseEntity<List<UserEntity>> getAllUsers();
-    ResponseEntity<UserEntity> createUser(CreateUser user);
+    UserEntity getUserById(Long id);
+    ResponseEntity<String> createUser(CreateUser user);
     ResponseEntity<Void> updateUser(CreateUser user);
     ResponseEntity<Void> deleteUser(int id);
 }

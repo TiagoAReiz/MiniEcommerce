@@ -1,5 +1,6 @@
 package tiago.Mini_Ecommerce.adapters.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tiago.Mini_Ecommerce.adapters.dtos.User.CreateUser;
@@ -21,7 +22,7 @@ public class UserController {
         return userUseCases.getAllUsers();
     }
     @PostMapping("/create")
-    public ResponseEntity<UserEntity> createUser(@RequestBody CreateUser user) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody CreateUser user) {
         return userUseCases.createUser(user);
     }
 

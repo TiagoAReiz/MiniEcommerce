@@ -26,15 +26,28 @@ public class UserUseCasesImpl implements UserUseCases {
     public ResponseEntity<List<UserEntity>> getAllUsers(){
         return userRepository.getAllUsers();
     }
+    @Override
+    public UserEntity getUserById(Long id){
+
+        return userRepository.getUserById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+    }
 
     @Override
-    public ResponseEntity<UserEntity> createUser(CreateUser user) {
+    public ResponseEntity<String> createUser(CreateUser user) {
         if (userRepository.getUserByEmail(user.email()) != null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário já existe");
         }
         UserEntity userEntity = userMap.toEntity(user);
         userEntity.setPassword(bCryptPasswordEncoder.encode(user.password()));
-        return userRepository.createUser(userEntity);
+        try {
+            userRepository.createUser(userEntity);
+            return  ResponseEntity.status(HttpStatus.CREATED).body("Usuário criado com sucesso");
+        }catch (Exception e){
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.toString());
+        }
+
+
     }
 
     @Override
