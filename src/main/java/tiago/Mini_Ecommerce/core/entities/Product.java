@@ -21,7 +21,7 @@ public class Product {
     private double price;
     private int quantity;
     private String category;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id", referencedColumnName = "id", nullable = false)
     private UserEntity seller;
     @CreationTimestamp
